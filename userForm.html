@@ -1,0 +1,106 @@
+<html>
+<meta charset=utf-8>
+<head>
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+/jquery-1.4.min.js"></script>
+<style type="text/css">
+* {margin: 0;padding: 0}
+.main{text-align:center;background: #6EC3C8}
+#tablediv{background:#99D1D3;height: 100%;}
+#usertable{margin: 0 auto;}
+</style>
+</head>
+<body>
+<div class="main">
+<br>
+ADD USER
+<br>
+<br>
+name：<input id="name" name="name">
+email：<input id="mail" name="mail">
+telephone number：<input id="tel" name="tel">
+<br>
+<br>
+<button id="adduser">submit</button>
+<br>
+<br>
+</div>
+
+
+<div id="tablediv">
+<br>
+<table id="usertable" border="1" cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <th>name</th>
+      <th>email</th>
+      <th>telephone number</th>
+      <th>operation</th>
+    </tr>
+  </tbody>
+</table>
+</div>
+<script language="JavaScript">
+	$("#adduser").click(function(){
+		//alert("mie");
+
+		//get values
+		var username=$("#name").val();
+		var email=$("#mail").val();
+		var tel=$("#tel").val();
+
+		//creat <tr>
+		var $nametd=$("<td/>");
+			$nametd.text(username);
+		var $emailtd=$("<td/>");
+			$emailtd.text(email);
+		var $teltd=$("<td/>");
+			$teltd.text(tel);
+
+		var $a=$("<a></a>");
+			$a.attr("href","userDemo.html?id="+username);
+			$a.text("delete");
+
+		//add <a> to <td>
+		var $atd=$("<td/>");
+			$atd.append($a);
+
+		//create tr,add td to tr
+		var $tr=$("<tr/>");
+			$tr.append($nametd);
+			$tr.append($emailtd);
+			$tr.append($teltd);
+			$tr.append($atd);
+
+		//creat table,add tr to table
+		$("#usertable").children().eq(0).append($tr);
+
+		///delete
+		$a.click(function(){
+			return delTr($a); //call the function
+		});
+
+	});
+
+	///delete tr
+	function delTr($obj){
+		///alert($obj.attr("href"));
+
+		///get the name to delete
+		var nameval=$obj.parent().parent().children().eq(0).text();
+
+		var flag=window.confirm("are you sure to delete user ["+ nameval +"]?");
+		if(!flag){
+			return false;
+		}
+
+		//delete tr
+		$obj.parent().parent().remove();
+
+		return false;
+
+	}
+</script> 
+
+</body>
+</html>
