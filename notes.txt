@@ -1,4 +1,4 @@
-初始化一个Git仓库，使用git init命令。
+﻿初始化一个Git仓库，使用git init命令。
 添加文件到Git仓库，分两步：
 • 第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件；
 • 第二步，使用命令git commit，完成。 （git commit -m"shuoming"）
@@ -281,3 +281,8 @@ To git@github.com:michaelliao/learngit.git
 • 命令git push origin --tags可以推送全部未推送过的本地标签；
 • 命令git tag -d <tagname>可以删除一个本地标签；
 • 命令git push origin :refs/tags/<tagname>可以删除一个远程标签。
+
+删除远程库的文件
+git rm --cached filename
+git commit -m "hehe"
+git push origin branch
